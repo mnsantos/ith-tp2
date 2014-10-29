@@ -64,6 +64,11 @@ if __name__ == '__main__':
 
 
   extract_attributes_for_wav(filename)
+
+  os.system('java -cp ' + DIR_WEKA + 'weka.jar weka.filters.unsupervised.attribute.Remove ' + \
+            '-R 1 -i output-wav.arff -o output1.arff')
+  os.system("mv output1.arff output-wav.arff")
+
   filter_attributes("278,1440,1583","output-wav.arff", "output-wav1.arff")
   os.system("mv output-wav1.arff output-wav.arff")
   print classify()
