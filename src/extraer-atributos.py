@@ -23,7 +23,7 @@ def extract_attributes_for_wavs_in_path(path):
     name = filename[11:len(filename)-4]
     
     os.system(DIR_OS + "SMILExtract -C " + DIR_OS +  "config/IS10_paraling.conf -I " + filename + \
-    " -O output.arff -instname " + name)
+    " -O output.arff -instname " + name + '> /dev/null 2>&1')
     os.system("rm smile.log")
 
   f = open("output.arff", "r")
@@ -43,6 +43,7 @@ def extract_attributes_for_wavs_in_path(path):
   f = open("output.arff", "w")
   f.write(lines)
 
+
 def filter_attributes(attr,inp,output):
   command = 'java -cp ' + DIR_WEKA + 'weka.jar weka.filters.unsupervised.attribute.Remove ' + \
             '-V -R ' + attr + ' -i ' + inp + ' -o ' + output
@@ -56,4 +57,8 @@ if __name__ == '__main__':
   path = "../tp2-dev/"
   extract_attributes_for_wavs_in_path(path)
 
-  filter_attributes("685,1441,1432,1442,676,686,684,1440,712,713,671,1446,1584","output.arff", "output-filter.arff")
+  os.system('java -cp ' + DIR_WEKA + 'weka.jar weka.filters.unsupervised.attribute.Remove ' + \
+            '-R 1 -i output.arff -o output1.arff')
+  os.system("mv output1.arff output.arff")
+
+  filter_attributes("278,1440,1583","output.arff", "output-filter.arff")
