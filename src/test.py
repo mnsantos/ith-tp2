@@ -11,13 +11,17 @@ def test(path):
     if "-m" in filename:
       if "m" in line[0]:
         print filename + " ...ok"
+      elif "f" in line[0]:
+        print filename + " ...error" + " resultado: f" 
       else:
-        print filename + " ...error"
+        print "Algo raro paso"
     elif "-f" in filename:
       if "f" in line[0]:
         print filename + " ...ok"
+      elif "m" in line[0]:
+        print filename + " ...error" + " resultado: m"
       else:
-        print filename + " ...error"
+        print "Algo raro paso"
     os.system("rm result.txt")
 
 
