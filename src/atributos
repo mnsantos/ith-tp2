@@ -24,6 +24,6 @@ BestFirst con J48: (igual que GreedyStepwise)
 		             mfcc_sma[12]_linregc2
 		             F0final_sma_quartile2
 
-255, 278, 675, 683, 685, 711, 1439, 1440
+255, 278, 675, 683, 685, 711, 1439, 1440, 1583
 
 

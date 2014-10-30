@@ -61,4 +61,4 @@ if __name__ == '__main__':
             '-R 1 -i output.arff -o output1.arff')
   os.system("mv output1.arff output.arff")
 
-  filter_attributes("278,1440,1583","output.arff", "output-filter.arff")
+  filter_attributes("255,278,675,683,685,711,1439,1440,1583","output.arff", "output-filter.arff")

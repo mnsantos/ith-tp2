@@ -47,7 +47,7 @@ def filter_attributes(attr,inp,output):
   os.system(command)
 
 def classify():
-  os.system("java -cp " + DIR_WEKA + "weka.jar weka.classifiers.trees.J48 -l j48.model -T output-wav.arff -p 0 > result 2>&1")
+  os.system("java -cp " + DIR_WEKA + "weka.jar weka.classifiers.trees.RandomForest -l seingrandomforest3.model -T output-wav.arff -p 0 > result 2>&1")
   f = open("result", "r")
   lines = f.readlines()
   for line in lines:
@@ -69,7 +69,7 @@ if __name__ == '__main__':
             '-R 1 -i output-wav.arff -o output1.arff')
   os.system("mv output1.arff output-wav.arff")
 
-  filter_attributes("278,1440,1583","output-wav.arff", "output-wav1.arff")
+  filter_attributes("255,278,675,683,685,711,1439,1440,1583","output-wav.arff", "output-wav1.arff")
   os.system("mv output-wav1.arff output-wav.arff")
   print classify()
   os.system("rm output-wav.arff")
