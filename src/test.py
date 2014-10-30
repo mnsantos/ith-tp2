@@ -5,11 +5,9 @@ from glob import glob
 
 def test(path):
   for filename in glob(os.path.join(path, '*.wav')):
-    print './genero.py ' + filename + " > result.txt"
     os.system('./genero.py ' + filename + " > result.txt")
     f = open("result.txt", "r")
     line = f.readlines()
-    print line
     if "-m" in filename:
       if "m" in line[0]:
         print filename + " ...ok"

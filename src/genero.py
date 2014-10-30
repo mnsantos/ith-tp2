@@ -51,9 +51,9 @@ def classify():
   f = open("result", "r")
   lines = f.readlines()
   for line in lines:
-    if "1:m" in line:
+    if ":m" in line:
       return "m"
-    elif "1:f" in line:
+    elif ":f" in line:
       return "f"
 
 if __name__ == '__main__':
