@@ -81,6 +81,6 @@ if __name__ == '__main__':
             '-R 1 -i output.arff -o output1.arff')
   os.system("mv output1.arff output.arff")
 
-# Filtramos nuevamente los atributos quedandonos con un conjunto reducido cuyo tamaño maximo es 40.
+# Filtramos nuevamente los atributos quedandonos con un conjunto reducido cuyo tamanio maximo es 40.
 
   filter_attributes("255,278,675,683,685,711,1439,1440,1583","output.arff", "output-filter.arff")
