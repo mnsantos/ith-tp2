@@ -1,0 +1,17 @@
+Extraccion de atributos
+
+	Para analizar los distintos wavs para el desarrollo del modelo utilizamos la herramienta open-smile, con la configuracion para el InterSpeech 2010 Parallinguistic challenge (paralling-IS10.conf). Esta configuracion nos permite extraer alrededor de 1500 atributos para cada wav de la biblioteca para desarrollo, de los cuales tuvimos que eliminar uno y modificar otro. 
+	Para esto confeccionamos un script (extraer-atributos.py) el cual 'appendea' para cada wav los valores de sus atributos al archivo output.arff, modifica el valor por defecto para la clase numeric como un atributo enum genero {m,f} y para cada wav setea el valor de la clase a partir del nombre del wav. El primer atributo "name" debimos eliminarlo puesto que Weka no trabaja con strings y complica el desarrollo del trabajo.
+
+seleccion de atributos
+
+	Para el modelo no es posible utilizar todos estos atributos porque estariamos sobreajustando, debemos seleccionar a lo sumo cuarenta de ellos para obtener un modelo 'consistente'. 
+Utilizamos varios de los metodos propuestos por Weka (Ranker, GreedyStepwise con JRip, con j48, RandomForest, Best First, ExtensiveSearch) variando incluso sus evaluadores, y nos quedamos con aquellos atributos que tenian mas coincidencias. 
+
+extraer el modelo, RandomForest
+
+	Para esta instancia generamos distintos modelos y luego los comparamos en eficiencia, contrastandolos entre si con un set de datos de test que armamos archivos de audio de personas conocidas, varios hombres y mujeres que accedieron a mandarnos un pequeño audio de entre 3 y 7 segundos.
+Comparamos los modelos de...	...guiandonos por la clasificacion de eficiencia que nos ofrece Weka en cross-validation con los wavs de tp2-dev.
+
+Resulto ser el mas eficiente el algoritmo de RandomForest seteado con 21 arboles. El mismo lo testeamos con nuestra biblioteca casera de wavs en la carpeta $test$. Pronosticamos una eficiencia del 80%.
+
