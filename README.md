@@ -10,7 +10,7 @@ Script utilizado para extraer los atributos de los wavs en /tp2-dev. Con estos a
 
 genero.py: 
 
-Script que determina el genero de la persona hablante del wav pasado como parametro. Para ello, extrae los atributos necesarios e invoca al modelo aprendido del script anterior. Forma de uso:
+Script que determina el genero de la persona hablante del wav pasado como parametro. Para ello, extrae los atributos necesarios e invoca al modelo aprendido. Forma de uso:
 ./genero.py [archivo .wav]
 
 
