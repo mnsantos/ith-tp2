@@ -3,39 +3,45 @@ import sys
 import os
 from glob import glob
 
-def test(path):
-  n = 0
-  aciertos = 0
-  errores = 0
-  for filename in glob(os.path.join(path, '*.wav')):
-    n = n + 1
-    os.system('./genero.py ' + filename + " > result.txt")
-    f = open("result.txt", "r")
-    line = f.readlines()
-    if "-m" in filename:
-      if "m" in line[0]:
-        print filename + " ...ok"
-        aciertos = aciertos + 1
-      elif "f" in line[0]:
-        print filename + " ...error" + " resultado: f"
-        errores = errores + 1 
-      else:
-        print "Algo raro paso"
-    elif "-f" in filename:
-      if "f" in line[0]:
-        print filename + " ...ok"
-        aciertos = aciertos + 1
-      elif "m" in line[0]:
-        print filename + " ...error" + " resultado: m"
-        errores = errores + 1
-      else:
-        print "Algo raro paso"
-    os.system("rm result.txt")
-  print "Aciertos: " + str(aciertos)
-  print "Errores: " + str(errores)
-  print "Porcentaje de efectividad: " + str((float(aciertos)/n)*100) + "%"
+def test(pathFiles, pathModels):
+  for model in glob(os.path.join(pathModels, '*.model')):
+    aciertos = 0
+    errores = 0
+    n = 0
+    for filename in glob(os.path.join(pathFiles, '*.wav')):
+      n = n + 1
+      os.system('./genero.py ' + filename + " " + model + " > result.txt")
+      f = open("result.txt", "r")
+      line = f.readlines()
+      if "-m" in filename:
+        if "m" in line[0]:
+          print filename + " ...ok"
+          aciertos = aciertos + 1
+        elif "f" in line[0]:
+          print filename + " ...error" + " resultado: f"
+          errores = errores + 1 
+        else:
+          print "Algo raro paso"
+      elif "-f" in filename:
+        if "f" in line[0]:
+          print filename + " ...ok"
+          aciertos = aciertos + 1
+        elif "m" in line[0]:
+          print filename + " ...error" + " resultado: m"
+          errores = errores + 1
+        else:
+          print "Algo raro paso"
+      os.system("rm result.txt")
 
+    print "--------------------------------------"
+
+    results = open("results_models.txt", "a")
+    results.write("Resultados para modelo " + model + ":\n")  
+    results.write("Aciertos: " + str(aciertos) + "\n")
+    results.write("Errores: " + str(errores) + "\n")
+    results.write("Porcentaje de efectividad: " + str((float(aciertos)/n)*100) + "%\n")
 
 if __name__ == '__main__':
-  path = sys.argv[1]
-  test(path)
+  pathFiles = sys.argv[1]
+  pathModels = sys.argv[2]
+  test(pathFiles, pathModels)

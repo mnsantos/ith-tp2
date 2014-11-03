@@ -46,8 +46,24 @@ def filter_attributes(attr,inp,output):
             '-V -R ' + attr + ' -i ' + inp + ' -o ' + output
   os.system(command)
 
-def classify():
-  os.system("java -cp " + DIR_WEKA + "weka.jar weka.classifiers.trees.RandomForest -l seingrandomforest3.model -T output-wav.arff -p 0 > result 2>&1")
+def classify(model):
+  weka = "weka.classifiers."
+  if "forest" in model:
+    weka = weka + "trees.RandomForest"
+  elif "jrip" in model:
+    weka = weka + "rules.JRip"
+  elif "j48graft" in model:
+    weka = weka + "trees.J48graft"
+  elif "j48" in model:
+    weka = weka + "trees.J48"
+  elif "tree" in model:
+    weka = weka + "trees.RandomTree"
+  elif "smo" in model:
+    weka = weka + "functions.SMO" 
+  elif "bayes" in model:
+    weka = weka + "bayes.NaiveBayes"
+
+  os.system("java -cp " + DIR_WEKA + "weka.jar " + weka + " -l " + model + " -T output-wav.arff -p 0 > result 2>&1")
   f = open("result", "r")
   lines = f.readlines()
   for line in lines:
@@ -58,6 +74,8 @@ def classify():
 
 if __name__ == '__main__':
   filename = sys.argv[1]
+  model = sys.argv[2]
+
   dirs = set_dirs()
   DIR_OS = dirs[0]
   DIR_WEKA = dirs[1]
@@ -71,6 +89,6 @@ if __name__ == '__main__':
 
   filter_attributes("255,278,675,683,685,711,1439,1440,1583","output-wav.arff", "output-wav1.arff")
   os.system("mv output-wav1.arff output-wav.arff")
-  print classify()
+  print classify(model)
   os.system("rm output-wav.arff")
   os.system("rm result")
