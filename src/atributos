@@ -1,9 +1,3 @@
-WE	Rifle, habria que correr los que tardan una bocha, dejarlos all night long.
-Lease como GeneticSearch, RandomSearch, ExhaustiveSearch y los Greedy o BestFirst creo que buscan hacia atras (backwards search o algo asi)
-
-278 y 1440 ya los teniamos, propongo 255 711 y 1439 tambien. Ranker propone como mejores los 684/683/675 (¿677/685?) que quiza no este mal agregarlos. Suma tambien los 1441 y 1431, pero no se, no los proponen otros como genetic search, aunque en realidad 1431 parece ganarle a 1441.
-
-
 LinearForwardSelection con J48 (trees):
 
 	Selected attributes: 255,1439,1440 : 3
@@ -24,7 +18,8 @@ BestFirst con J48: (igual que GreedyStepwise)
 		             mfcc_sma[12]_linregc2
 		             F0final_sma_quartile2
 
-95,109,184,255,266,278,285,675,683,685,711,942,955,1431,1439,1440,1583
+95,109,184,224,255,266,269,278,285,297,327,654,675,683,685,711,942,955,1069,1320,1334,1431,1439,1440,1521,1527,1583
+TOTAL 26+clase
 
 
 184-285-1431 best first jrip
@@ -34,3 +29,7 @@ BestFirst con J48: (igual que GreedyStepwise)
 684-1445 ranker
 
 95,109,955 greedy con bayes
+
+269,297,327,654,1320,1334 LFS con bayes
+
+224,1069 LFS con RF
