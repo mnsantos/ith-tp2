@@ -6,6 +6,9 @@ from glob import glob
 DIR_OS = ""
 DIR_WEKA = ""
 
+# NAME: set_dirs()
+# La funcion setea los paths de open-smile y weka.
+
 def set_dirs():
   f = open("config.cfg", "r")
   lines = f.readlines()
@@ -17,6 +20,11 @@ def set_dirs():
       line = line.split()
       DIR_OS = line[1]
   return [DIR_OS,DIR_WEKA]
+
+# NAME: extract_attributes_for_wavs_in_path
+# IN: path
+# La funcion extrae los atributos de todos los .wav que se encuentran en 'path' haciendo uso de la herramienta
+# open-smile y los guarda en "output.arff"
 
 def extract_attributes_for_wavs_in_path(path):
   for filename in glob(os.path.join(path, '*.wav')):
@@ -43,6 +51,10 @@ def extract_attributes_for_wavs_in_path(path):
   f = open("output.arff", "w")
   f.write(lines)
 
+# NAME: filter_attributes
+# IN: array de atributos, input, output
+# La funcion toma el input pasado como parametro y remueve todos los atributos que no se encuentran en el array
+# de atributos. Guarda los resultados en output.
 
 def filter_attributes(attr,inp,output):
   command = 'java -cp ' + DIR_WEKA + 'weka.jar weka.filters.unsupervised.attribute.Remove ' + \
@@ -50,15 +62,25 @@ def filter_attributes(attr,inp,output):
   os.system(command)
 
 if __name__ == '__main__':
+
+# Seteamos los paths de Opensmile y Weka con los parametros establecidos en config.cfg.
+
   dirs = set_dirs()
   DIR_OS = dirs[0]
   DIR_WEKA = dirs[1]
 
   path = "../tp2-dev/"
+
+# Extraemos los 1500 atributos de los .wavs en path con la herramienta open-smile.
+
   extract_attributes_for_wavs_in_path(path)
+
+# Filtramos el atributo "name"  
 
   os.system('java -cp ' + DIR_WEKA + 'weka.jar weka.filters.unsupervised.attribute.Remove ' + \
             '-R 1 -i output.arff -o output1.arff')
   os.system("mv output1.arff output.arff")
+
+# Filtramos nuevamente los atributos quedandonos con un conjunto reducido cuyo tamaño maximo es 40.
 
   filter_attributes("255,278,675,683,685,711,1439,1440,1583","output.arff", "output-filter.arff")

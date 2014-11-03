@@ -3,6 +3,14 @@ import sys
 import os
 from glob import glob
 
+# NAME: test
+# IN: pathFiles: path donde se encuentran los tests. 
+#     pathModels: path donde se encuentran los modelos a testear.
+# OUT: "result_models.txt" en donde se encuentran los resultados de los tests para cada modelo.
+# La funcion toma los dos paths pasados como parametros y evalua cada modelo de pathModelos con
+# el conjunto de tests en pathFiles. Para ello tiene en cuenta la cantidad de aciertos y de errores
+# y nos da un porcentaje de efectividad.
+
 def test(pathFiles, pathModels):
   for model in glob(os.path.join(pathModels, '*.model')):
     aciertos = 0
@@ -42,6 +50,7 @@ def test(pathFiles, pathModels):
     results.write("Porcentaje de efectividad: " + str((float(aciertos)/n)*100) + "%\n")
 
 if __name__ == '__main__':
+
   pathFiles = sys.argv[1]
   pathModels = sys.argv[2]
   test(pathFiles, pathModels)
