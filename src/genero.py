@@ -115,6 +115,7 @@ if __name__ == '__main__':
 
 # Clasificamos el .wav pasado como parametro y mostramos el resultado por pantalla.
 
+# model = 
   print classify(model)
   os.system("rm output-wav.arff")
   os.system("rm result")
