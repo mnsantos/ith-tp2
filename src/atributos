@@ -1,4 +1,4 @@
-Rifle, habria que correr los que tardan una bocha, dejarlos all night long.
+WE	Rifle, habria que correr los que tardan una bocha, dejarlos all night long.
 Lease como GeneticSearch, RandomSearch, ExhaustiveSearch y los Greedy o BestFirst creo que buscan hacia atras (backwards search o algo asi)
 
 278 y 1440 ya los teniamos, propongo 255 711 y 1439 tambien. Ranker propone como mejores los 684/683/675 (¿677/685?) que quiza no este mal agregarlos. Suma tambien los 1441 y 1431, pero no se, no los proponen otros como genetic search, aunque en realidad 1431 parece ganarle a 1441.
@@ -24,6 +24,13 @@ BestFirst con J48: (igual que GreedyStepwise)
 		             mfcc_sma[12]_linregc2
 		             F0final_sma_quartile2
 
-255, 278, 675, 683, 685, 711, 1439, 1440, 1583
+95,109,184,255,266,278,285,675,683,685,711,942,955,1431,1439,1440,1583
 
 
+184-285-1431 best first jrip
+
+266-942-1431 greedy con SMO
+
+684-1445 ranker
+
+95,109,955 greedy con bayes
