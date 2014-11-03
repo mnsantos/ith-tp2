@@ -13,10 +13,11 @@ genero.py:
 Script que determina el genero de la persona hablante del wav pasado como parametro. Para ello, extrae los atributos necesarios e invoca al modelo aprendido. Forma de uso:
 ./genero.py [archivo .wav]
 
-
 test.py:
 
-Script que evalua el porcentaje de efectividad de los modelos en src/models con los atributos seleccionados en 'genero.py'. Forma de uso:
+IMPORTANTE: para utilizar el script comentar la linea 118 de 'genero.py'.
+Script que evalua el porcentaje de efectividad de los modelos en src/models. Forma de uso:
+
 ./test [path de los test] [path de los modelos]
 
 
