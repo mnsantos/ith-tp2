@@ -90,7 +90,8 @@ def classify(model):
 
 if __name__ == '__main__':
   filename = sys.argv[1]
-  model = sys.argv[2]
+  if (len(sys.argv) == 3):
+    model = sys.argv[2]
 
 # Seteamos los paths de Opensmile y Weka con los parametros establecidos en config.cfg.
 
@@ -110,12 +111,12 @@ if __name__ == '__main__':
 
 # Filtramos nuevamente los atributos quedandonos con un conjunto reducido cuyo tamanio maximo es 40.
 
-  filter_attributes("255,278,675,683,685,711,1439,1440,1583","output-wav.arff", "output-wav1.arff")
+  filter_attributes("95,109,184,224,255,266,269,278,285,297,327,654,675,683,685,711,942,955,1069,1320,1334,1431,1439,1440,1521,1527,1583","output-wav.arff", "output-wav1.arff")
   os.system("mv output-wav1.arff output-wav.arff")
 
 # Clasificamos el .wav pasado como parametro y mostramos el resultado por pantalla.
 
-# model = "randomforest.model"
+  model = "models/randomforest-otro.model"
   print classify(model)
   os.system("rm output-wav.arff")
   os.system("rm result")

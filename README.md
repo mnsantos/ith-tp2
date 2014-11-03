@@ -15,7 +15,7 @@ Script que determina el genero de la persona hablante del wav pasado como parame
 
 test.py:
 
-IMPORTANTE: para utilizar el script comentar la linea 118 de 'genero.py'.
+IMPORTANTE: para utilizar el script comentar la linea 118 de 'genero.py'. Tener en cuenta que los modelos a testear deben usar los mismos atributos. Estos se encuentran determinados en 'genero.py'.
 Script que evalua el porcentaje de efectividad de los modelos en src/models. Forma de uso:
 
 ./test [path de los test] [path de los modelos]
